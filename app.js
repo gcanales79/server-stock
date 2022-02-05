@@ -10,6 +10,7 @@ const userRoutes=require("./routers/user");
 const menuRoutes=require("./routers/menu");
 const NewsLetterRoutes=require("./routers/newsletter");
 const CourseRoutes=require("./routers/course");
+const PostRoutes=require("./routers/post");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use(`/api/${API_VERSION}`,userRoutes)
 app.use(`/api/${API_VERSION}`,menuRoutes)
 app.use(`/api/${API_VERSION}`,NewsLetterRoutes)
 app.use(`/api/${API_VERSION}`,CourseRoutes)
+app.use(`/api/${API_VERSION}`,PostRoutes)
 
 
 module.exports=app;
