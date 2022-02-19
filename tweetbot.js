@@ -15,7 +15,7 @@ axios
   .get(`${process.env.url_netzwerk}/to-send-tweets/${fecha}`)
   .then((response) => {
     const { tweet } = response.data;
-    //console.log(response)
+    console.log(response)
     let data=tweet;
     console.log(data)
     for (let i = 0; i < data.length; i++) {

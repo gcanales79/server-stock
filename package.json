@@ -10,12 +10,14 @@
   "author": "Gustavo Canales Robles",
   "license": "ISC",
   "dependencies": {
+    "@easypost/api": "^4.0.0",
     "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "connect-multiparty": "^2.2.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-validator": "^6.14.0",
     "imagemin": "^7.0.1",
     "imagemin-webp": "^6.0.0",
     "jwt-simple": "^0.5.6",
@@ -24,6 +26,7 @@
     "mongoose": "^6.0.8",
     "mongoose-paginate": "^5.0.3",
     "multiparty": "^4.2.2",
+    "twilio": "^3.74.0",
     "twitter": "^1.7.1"
   }
 }
