@@ -13,6 +13,7 @@ const CourseRoutes=require("./routers/course");
 const PostRoutes=require("./routers/post");
 const TweetRoutes=require("./routers/tweet");
 const TrackRoutes=require("./routers/track");
+const CallRoutes=require("./routers/call");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use(`/api/${API_VERSION}`,CourseRoutes)
 app.use(`/api/${API_VERSION}`,PostRoutes)
 app.use(`/api/${API_VERSION}`,TweetRoutes)
 app.use(`/api/${API_VERSION}`,TrackRoutes)
+app.use(`/api/${API_VERSION}`,CallRoutes)
 
 
 module.exports=app;
