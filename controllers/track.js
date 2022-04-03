@@ -134,12 +134,14 @@ function getTrack(req, res) {
 
 function easyPost(req, res) {
   const { result } = req.body;
+  console.log(result)
   if (result) {
     res.status(200).json({
       message: "Tracking data received succesfully",
     });
     Track.findOne({ easypost_id: result.id }, (err, trackStored) => {
       if (err) {
+        console.log(err);
         res.send({ code: "500", message: "Error del servidor" });
       } else {
         if (!trackStored) {
