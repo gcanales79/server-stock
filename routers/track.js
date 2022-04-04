@@ -18,7 +18,7 @@ api.delete("/delete-track/:id",[md_auth.ensureAuth],TrackController.deleteTrack)
 
 api.get("/get-track/:id",TrackController.getTrack)
 
-api.post("/api/easypost-webhook",TrackController.easyPost)
+api.post("/easypost-webhook",TrackController.easyPost)
 
 
 module.exports=api;
