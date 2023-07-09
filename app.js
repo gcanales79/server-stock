@@ -14,6 +14,7 @@ const PostRoutes=require("./routers/post");
 const TweetRoutes=require("./routers/tweet");
 const TrackRoutes=require("./routers/track");
 const CallRoutes=require("./routers/call");
+const BirthdayRoutes=require("./routers/birthday");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -37,6 +38,7 @@ app.use(`/api/${API_VERSION}`,PostRoutes)
 app.use(`/api/${API_VERSION}`,TweetRoutes)
 app.use(`/api/${API_VERSION}`,TrackRoutes)
 app.use(`/api/${API_VERSION}`,CallRoutes)
+app.use(`/api/${API_VERSION}`,BirthdayRoutes)
 
 
 module.exports=app;

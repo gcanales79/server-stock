@@ -61,7 +61,7 @@ function getTracks(req, res) {
   };
 
   Track.paginate({}, options, (err, tracksStored) => {
-    if (err) {
+    if (err) { 
       res.send({ code: "500", message: "Error del servidor" });
     } else {
       if (!tracksStored) {
