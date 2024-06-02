@@ -24,7 +24,7 @@ if (daylight) {
   axios
     .post(`${process.env.url_netzwerk}/sign-in`, data)
     .then((response) => {
-      //console.log(response.data.accessToken)
+     //console.log(response.data.accessToken)
       let token = response.data.accessToken;
       if (!token) {
         res.send({ code: "404", message: "Usuario no encontrado" });
@@ -34,8 +34,9 @@ if (daylight) {
             headers: { Accept: "application/json", Authorization: token },
           })
           .then((response) => {
-            if (response.data.length === 0) {
-              console.log("No hay cumpleaños hoy");
+            //console.log(response)
+            if (response.data.bday.length === 0) {
+              console.log("No hay cumpleaños hoy")
             } else {
               //console.log(response.data.bday);
               reminder(response.data.bday, token);

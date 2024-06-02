@@ -5,6 +5,7 @@ var upload = multer({ dest: "./bdayFiles" });
 
 
 
+
 const md_auth = require("../middleware/authenticated");
 
 const api = express.Router();
@@ -24,5 +25,7 @@ api.post("/upload", upload.single("bdayFile"), [md_auth.ensureAuth], BdayControl
 api.get("/get-today-bdays/:month/:day", [md_auth.ensureAuth],BdayController.todayBday)
 
 api.post("/reminder",[md_auth.ensureAuth],BdayController.reminder)
+
+api.post("/remind-bday",BdayController.BdayToday)
 
 module.exports = api;

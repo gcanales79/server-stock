@@ -5,6 +5,8 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
 var XLSX = require("xlsx");
+const { exec } = require('child_process');
+const path = require('path');
 
 
 
@@ -163,6 +165,25 @@ function getBdays(req, res) {
     }
   }
 
+  //Que te de los cumpleaños
+  function BdayToday(req,res){
+    // Path to the script you want to run
+    const scriptPath = path.resolve(__dirname, '../birthdayreminder.js');
+
+  exec(`node ${scriptPath}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing script: ${error.message}`);
+      return res.status(500).send(`Error: ${error.message}`);
+    }
+    if (stderr) {
+      console.error(`Script error: ${stderr}`);
+      return res.status(500).send(`Script error: ${stderr}`);
+    }
+    console.log(`Script output: ${stdout}`);
+    res.send(`Script executed successfully: ${stdout}`);
+  });
+  }
+
  
 
 module.exports = {
@@ -173,5 +194,6 @@ module.exports = {
     getBday,
     uploadFile,
     todayBday,
-    reminder
+    reminder,
+    BdayToday
   };
