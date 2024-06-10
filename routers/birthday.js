@@ -28,4 +28,6 @@ api.post("/reminder",[md_auth.ensureAuth],BdayController.reminder)
 
 api.post("/remind-bday",BdayController.BdayToday)
 
+api.post("/no-birthday",BdayController.noBirthday)
+
 module.exports = api;

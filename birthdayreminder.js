@@ -2,7 +2,7 @@ require("dotenv").config();
 const moment = require("moment-timezone");
 const axios = require("axios");
 
-let daylight = moment().tz("Europe/Warsaw").isDST();
+let daylight = true //moment().tz("Europe/Warsaw").isDST();
 
 //let now=moment().format("DD-MMM-YYYY HH:mm:ss")
 
@@ -37,6 +37,7 @@ if (daylight) {
             //console.log(response)
             if (response.data.bday.length === 0) {
               console.log("No hay cumpleaños hoy")
+              noBirthday(token)
             } else {
               //console.log(response.data.bday);
               reminder(response.data.bday, token);
@@ -57,6 +58,19 @@ if (daylight) {
 function reminder(data, token) {
   axios
     .post(`${process.env.url_netzwerk}/reminder`, data, {
+      headers: { Accept: "application/json", Authorization: token },
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function noBirthday(token) {
+  axios
+    .post(`${process.env.url_netzwerk}/no-birthday`, {
       headers: { Accept: "application/json", Authorization: token },
     })
     .then((response) => {

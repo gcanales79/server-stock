@@ -152,18 +152,43 @@ function getBdays(req, res) {
     console.log(data.length)
     for (let i=0;i<data.length;i++){
         client.messages.create({
+          contentSid:"HX2e9318ca017594745efa8ebe3baf7d27",
             from:`whatsapp:${process.env.TWILIO_PHONE}`,
-            body:"Today is the birthday of " + data[i].name + " " + data[i].lastname + ".\n\n" +
-            "The birthday is " + moment(data[i].birthday).format("DD-MMM-YYYY"),
+            messagingServiceSid: process.env.serviceSid,
+            contentVariables:JSON.stringify({
+              1: String(data[i].name),
+              2: String(data[i].lastname),
+              3: String(data[i].birthday)
+            }),
             to:`whatsapp:${process.env.GUS_PHONE}`,
         }).then((message)=>{
             console.log(`Whatsapp: ${message.sid}`)
-            res,json(message)
+            res.json(message)
         }).catch((err)=>{
             res.json(err)
         })
     }
   }
+
+    //No birthday
+    function noBirthday(req,res){
+      //const data = req.body;
+      //console.log(data.length)
+      //console.log("No Birthday")
+          client.messages.create({
+              contentSid:"HX67f8f6c8a78e7117220178b2f8f2a2f1",
+              from:`whatsapp:${process.env.TWILIO_PHONE}`,
+              messagingServiceSid: process.env.serviceSid,
+              to:`whatsapp:${process.env.GUS_PHONE}`,
+              body: "There is no birthday today."
+          }).then((message)=>{
+              console.log(`Whatsapp: ${message.sid}`)
+              res.json(message)
+          }).catch((err)=>{
+              res.json(err)
+          })
+      
+    }
 
   //Que te de los cumpleaños
   function BdayToday(req,res){
@@ -195,5 +220,6 @@ module.exports = {
     uploadFile,
     todayBday,
     reminder,
-    BdayToday
+    BdayToday,
+    noBirthday
   };
